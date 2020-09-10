@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const db = require('./knex-config');
-const server = express(); 
+const server = express();
 
 server.use(express.json());
 server.use(helmet());
@@ -25,9 +25,10 @@ server.get('/cars', (req, res) => {
                 message: 'Error retrieving the cars',
             });
         })
+});
 
-    server.post('/cars', (req, res) => {
-        db('cars').insert(req.body)
+server.post('/cars', (req, res) => {
+    db('cars').insert(req.body)
         .then(car => {
             res.status(201).json(car)
         })
@@ -37,10 +38,9 @@ server.get('/cars', (req, res) => {
                 message: 'Error adding this car'
             });
         });
-    });
 });
-    
 
 
-    
+
+
 server.listen(7000);
