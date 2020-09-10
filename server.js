@@ -27,18 +27,16 @@ server.get('/cars', (req, res) => {
         })
 
     server.post('/cars', (req, res) => {
-        // db('cars').insert(req.body)
-        // .then(car => {
-        //     res.status(201).json(car)
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        //     res.status(500).json({
-        //         message: 'Error adding this car'
-        //     });
-        // });
-
-        res.send('hi');
+        db('cars').insert(req.body)
+        .then(car => {
+            res.status(201).json(car)
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({
+                message: 'Error adding this car'
+            });
+        });
     });
 });
     
